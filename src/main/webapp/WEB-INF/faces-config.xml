@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<faces-config version="1.2"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+    <navigation-rule>
+        <from-view-id>/facesLogin.jsp</from-view-id>
+
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/facesAdministratorStock.jsp</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>user</from-outcome>
+            <to-view-id>/facesWelcomeSimpleUser.jsp</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/facesIncorrectLogin.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/facesAdministratorStock.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>userAdmin</from-outcome>
+            <to-view-id>/facesAdministratorUser.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/facesAdministratorUser.jsp</from-view-id>
+        <navigation-case>
+            <from-outcome>stockAdmin</from-outcome>
+            <to-view-id>/facesAdministratorStock.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <managed-bean>
+        <managed-bean-name>LoginInSistem</managed-bean-name>
+        <managed-bean-class>beans.LoginBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>StockSistem</managed-bean-name>
+        <managed-bean-class>beans.StockInfoBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>CrudOps</managed-bean-name>
+        <managed-bean-class>beans.CRUDUserBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>StockOps</managed-bean-name>
+        <managed-bean-class>beans.CRUDStockBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <application>
+        <message-bundle>messages</message-bundle>
+        <locale-config>
+            <default-locale>en</default-locale>
+        </locale-config>
+    </application>
+</faces-config>
